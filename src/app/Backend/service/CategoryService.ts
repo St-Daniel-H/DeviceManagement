@@ -3,17 +3,22 @@ import { SupabaseClient } from "@supabase/supabase-js";
 import { createClient } from "@supabase/supabase-js";
 export default class CategoryReposiroty{
      supabase = createClient(process.env.NEXT_PUBLIC_SUPABASE_URL!,
-        process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!)
+        process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!,)
     public async GetCategories(){
+       try{
+         let { data: Category, error } = await this.supabase
+         .from('Category') 
+          .select('*')
+          if(error){
+             console.log(error);
+          }else{
+            console.log(Category)
+             return NextResponse.json({categories: Category})
+          }
+       }catch(error){
+         console.log(error);
+       }
        
-        let { data: Device, error } = await this.supabase
-        .from('Category') 
-         .select('*')
-         if(error){
-            console.log(error);
-         }else{
-            return Device;
-         }
     }
     public async CreateCategory(name: string){
        console.log(name);

@@ -3,7 +3,7 @@ import { createClientComponentClient } from "@supabase/auth-helpers-nextjs";
 import { cookies } from "next/headers";
 import Link from "next/link";
 import { useState } from "react";
-export default function AddCategory() {
+export default function CategoryDashboard() {
   const supabase = createClientComponentClient();
   const [name, setName] = useState("");
 
@@ -31,18 +31,22 @@ export default function AddCategory() {
   };
 
   return (
-    <main id="AddCategoryForm">
-      <form onSubmit={handleSubmit}>
-        <label htmlFor="name">Name</label>
-        <br />
-        <input
-          id="name"
-          value={name}
-          onChange={(e) => setName(e.target.value)}
-        />
-        <br />
-        <button type="submit">Add Category</button>
-      </form>
+    <main id="CategoryDashboard">
+      <div id="AddCategoryForm">
+        <h1>Add Category</h1>
+        <form onSubmit={handleSubmit}>
+          <label htmlFor="name">Name</label>
+          <br />
+          <input
+            id="name"
+            value={name}
+            onChange={(e) => setName(e.target.value)}
+          />
+          <br />
+          <button type="submit">Add Category</button>
+        </form>
+      </div>
+      <div id="ViewCategories"></div>
     </main>
   );
 }

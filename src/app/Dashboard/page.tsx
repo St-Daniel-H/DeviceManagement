@@ -13,10 +13,10 @@ export default function Dashboard() {
           <br />
           <ul>
             <li>
-              <Link href="/addItem">Add Item</Link>
+              <Link href="/Dashboard/addItem">Add Item</Link>
             </li>
             <li>
-              <Link href="/viewItems">View Items</Link>
+              <Link href="/Dashboard/viewItems">View Items</Link>
             </li>
           </ul>
         </div>
@@ -25,10 +25,7 @@ export default function Dashboard() {
           <br />
           <ul>
             <li>
-              <Link href="/addCategory">Add Category</Link>
-            </li>
-            <li>
-              <Link href="/viewCategory">View Category</Link>
+              <Link href="/Dashboard/CategoryDashboard">Add Category</Link>
             </li>
           </ul>
         </div>
