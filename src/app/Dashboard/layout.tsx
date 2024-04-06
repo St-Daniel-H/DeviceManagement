@@ -3,24 +3,32 @@ import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import "../scss/DashboardPage.scss";
 import "../scss/TopBar.scss";
+import "../scss/Categories.scss";
 import Provider from "./provider";
+import { useRouter } from "next/router";
 const inter = Inter({ subsets: ["latin"] });
 export default function RootLayout({
   children,
   CategoryDashboard,
   TopBar,
+  AddItem,
+  ViewItems,
+  Dashboard,
 }: Readonly<{
   children: React.ReactNode;
   CategoryDashboard: React.ReactNode;
+  Dashboard: React.ReactNode;
   TopBar: React.ReactNode;
+  AddItem: React.ReactNode;
+  ViewItems: React.ReactNode;
 }>) {
   return (
     <Provider>
       <div style={{ display: "flex" }}>
-        <div>{children}</div>
+        {Dashboard}
         <div id="RightSideDashboard">
           {TopBar}
-          {CategoryDashboard}
+          <div>{children}</div>
         </div>
       </div>
     </Provider>

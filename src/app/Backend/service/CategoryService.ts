@@ -6,19 +6,16 @@ export default class CategoryReposiroty{
         process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!,)
     public async GetCategories(){
        try{
-         let { data: Category, error } = await this.supabase
-         .from('Category') 
-          .select('*')
+         let query = this.supabase.from('Category').select('*');
+        let { data: Category, error } = await query;
           if(error){
              console.log(error);
           }else{
-            console.log(Category)
              return NextResponse.json({categories: Category})
           }
        }catch(error){
          console.log(error);
-       }
-       
+       } 
     }
     public async CreateCategory(name: string){
        console.log(name);
