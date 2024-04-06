@@ -1,4 +1,6 @@
 "use client";
+import "../../../scss/Dashboards.scss";
+
 import { useEffect, useState } from "react";
 
 export default function CategoriesTable() {
@@ -43,7 +45,9 @@ export default function CategoriesTable() {
               <td>{item.id}</td>
               <td>{item.name}</td>
               <td>
-                <button onClick={() => {}}>Update</button>
+                <button className="buttonField" onClick={() => {}}>
+                  Update
+                </button>
               </td>
             </tr>
           ))}

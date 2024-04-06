@@ -1,0 +1,23 @@
+#ViewItemsFilter {
+    input {
+        margin-left: 5px;
+    }
+}
+
+.CheckBoxField {
+    appearance: none;
+    width: 16px;
+    height: 16px;
+    border-radius: 4px;
+    border: 1px solid #ffd700;
+    margin-right: 8px;
+    cursor: pointer;
+}
+
+.CheckBoxField:checked {
+    background-color: #ffd700;
+}
+
+.CheckBoxField:not(:checked) {
+    background-color: #24292e;
+}

@@ -8,22 +8,47 @@ export default class DeviceCategory{
              const priceeq = (searchParams.get("priceeq"));
              const pricegt = searchParams.get("pricegt");
              const pricelt = searchParams.get("pricelt");
+             const ctname = searchParams.get("ctname");
+             const onsale = searchParams.get("onsale");
              const name = searchParams.get("name");
              console.log(priceeq);
-            try{
-                let query = this.supabase.from('Device').select('*');
-                  if (priceeq) {
-                    query = query.eq('price', priceeq);
-                }
-             if (pricegt) {
-                 query = query.gt('price', pricegt);
-             }
-              if (pricelt) {
-                   query = query.lt('price',pricelt);
+             try {
+               let query: any;
+                if (ctname) {
+                   query = this.supabase
+                  .from('Device')
+                  .select('*, Category!inner(name)')
+                  .eq('Category.name', ctname)
+              }else{
+                query = this.supabase
+               .from('Device')
+               .select('*, Category(name)')
               }
-               if (name) {
-                  query = query.ilike('name', name);
+              
+
+               if (priceeq) {
+                   query = query.eq('price', parseInt(priceeq));
                }
+   
+               if (pricegt) {
+                   query = query.gt('price', parseInt(pricegt));
+               }
+   
+               if (pricelt) {
+                   query = query.lt('price', parseInt(pricelt));
+               }
+   
+               if (name) {
+                   query = query.ilike('name', `%${name}%`);
+               }
+   
+              
+          
+   
+               if (onsale === "true") {
+                   query = query.not('sale_deduct', 'is', null);
+               }
+
 
                 let { data: Device, error } = await query;
                  if(error){

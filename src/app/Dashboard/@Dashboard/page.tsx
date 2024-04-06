@@ -61,7 +61,7 @@ export default function Dashboard() {
           <br />
           <ul>
             <li>
-              <Link href="/Dashboard/CategoryDashboard">Add Category</Link>
+              <Link href="/Dashboard/Category">Add Category</Link>
             </li>
           </ul>
         </div>
