@@ -6,7 +6,8 @@ import { useState } from "react";
 export default function CategoryDashboard() {
   const supabase = createClientComponentClient();
   const [name, setName] = useState("");
-
+  const [valid, setValid] = useState("");
+  const [error, setError] = useState("");
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     const submitData = { name };
@@ -21,8 +22,12 @@ export default function CategoryDashboard() {
       console.log(res);
       if (res.ok) {
         console.log("Yeai!");
+        setError("");
+        setValid("Category was added");
       } else {
         console.log("Oops! Something is wrong.");
+        setValid("");
+        setError("Something went wrong");
       }
     } catch (error) {
       console.log(error);
@@ -43,10 +48,13 @@ export default function CategoryDashboard() {
             onChange={(e) => setName(e.target.value)}
           />
           <br />
+          {valid != "" ? <span style={{ color: "green" }}>{valid}</span> : ""}
+          {error != "" ? <span style={{ color: "red" }}>{error}</span> : ""}
+          <br />
           <button type="submit">Add Category</button>
         </form>
       </div>
-      <div id="ViewCategories"></div>
+      {/* <div id="ViewCategories"></div> */}
     </main>
   );
 }

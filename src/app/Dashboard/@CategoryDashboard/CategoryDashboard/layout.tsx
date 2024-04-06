@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
-
+import "../../../scss/Categories.scss";
 const inter = Inter({ subsets: ["latin"] });
 export default function RootLayout({
   children,
@@ -10,9 +10,9 @@ export default function RootLayout({
   CategoriesTable: React.ReactNode;
 }>) {
   return (
-    <div>
+    <div id="Categories">
       <div>{children}</div>
-      {CategoriesTable}
+      <div id="CategoriesTable">{CategoriesTable}</div>
     </div>
   );
 }
