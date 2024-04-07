@@ -43,7 +43,6 @@ export default function CategoriesTable() {
           <tr>
             <th>ID</th>
             <th>Name</th>
-            <th>Actions</th>
           </tr>
         </thead>
         <tbody>
@@ -61,11 +60,6 @@ export default function CategoriesTable() {
                 >
                   {item.name}
                 </Link>
-              </td>
-              <td>
-                <button className="buttonField" onClick={() => {}}>
-                  Update
-                </button>
               </td>
             </tr>
           ))}

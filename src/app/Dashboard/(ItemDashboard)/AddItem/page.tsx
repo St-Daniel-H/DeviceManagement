@@ -1,5 +1,6 @@
 "use client";
 import "../../../scss/AddItemForm.scss";
+import api from "@/app/components/link";
 
 import { Autocomplete, TextField } from "@mui/material";
 import { useEffect, useState } from "react";
@@ -78,27 +79,27 @@ export default function AddItem() {
   }, []);
   return (
     <main className="DashboardContent">
-      <div id="AddItemForm">
-        <h1>Add Device</h1>
-        <label htmlFor="name"> Name</label> <br />
-        <input
-          style={{ width: "100%" }}
-          id="name"
-          className="inputField"
-          value={formData.name}
-          onChange={(e) => setFormData({ ...formData, name: e.target.value })}
-        />{" "}
-        <br />
-        <label htmlFor="price">Price</label> <br />
-        <input
-          id="price"
-          className="inputField"
-          value={formData.price}
-          onChange={(e) =>
-            setFormData({ ...formData, price: parseFloat(e.target.value) })
-          }
-        />
+      <div className="AddItemForm">
+        <h1>Add Device</h1>{" "}
         <form onSubmit={submitAddDevice} id="AddItemFormSale">
+          <label htmlFor="name"> Name</label> <br />
+          <input
+            style={{ width: "100%" }}
+            id="name"
+            className="inputField"
+            value={formData.name}
+            onChange={(e) => setFormData({ ...formData, name: e.target.value })}
+          />{" "}
+          <br />
+          <label htmlFor="price">Price</label> <br />
+          <input
+            id="price"
+            className="inputField"
+            value={formData.price}
+            onChange={(e) =>
+              setFormData({ ...formData, price: parseFloat(e.target.value) })
+            }
+          />
           <h2>Sale</h2>
           <label htmlFor="saleDeductPrice">Deduct from price</label>
           <br />

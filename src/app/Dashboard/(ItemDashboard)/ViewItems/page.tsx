@@ -47,7 +47,7 @@ export default function CategoryDashboard() {
     try {
       const res = await fetch(
         `http://localhost:3000/Backend/api/Device?name=${name}&priceeq=${eqPrice}&pricelt=${ltPrice}&pricegt=${gtPrice}&onsale=${onSale}&ctname=${
-          ctfilter == "" ? categoryName : ctfilter
+          ctfilter == "" || ctfilter == null ? categoryName : ctfilter
         }`,
         {
           method: "GET",
@@ -196,14 +196,24 @@ export default function CategoryDashboard() {
               <th>Price</th>
               <th>Category</th>
               <th>Sale</th>
-              <th>Actions</th>
             </tr>
           </thead>
           <tbody>
             {devices.map((item, index) => (
               <tr key={index}>
                 <td>{item.id}</td>
-                <td>{item.name}</td>
+                <td>
+                  <Link
+                    style={{
+                      textDecoration: "none",
+                      color: "inherit",
+                      cursor: "pointer",
+                    }}
+                    href={`ViewItems/${encodeURIComponent(item.id)}`}
+                  >
+                    {item.name}
+                  </Link>
+                </td>
                 <td>
                   {item.sale_deduct != null && item.sale_deduct != 0 ? (
                     <span>
@@ -228,11 +238,6 @@ export default function CategoryDashboard() {
                   ) : (
                     "null"
                   )}
-                </td>
-                <td>
-                  <button onClick={() => {}} className="buttonField">
-                    Update
-                  </button>
                 </td>
               </tr>
             ))}
