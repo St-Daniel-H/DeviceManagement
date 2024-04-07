@@ -11,10 +11,7 @@ import { useRouter } from "next/router";
 const inter = Inter({ subsets: ["latin"] });
 export default function RootLayout({
   children,
-  CategoryDashboard,
   TopBar,
-  AddItem,
-  ViewItems,
   Dashboard,
 }: Readonly<{
   children: React.ReactNode;

@@ -6,7 +6,6 @@ import { parseISO, format } from "date-fns";
 import { Autocomplete, TextField } from "@mui/material";
 import { useEffect, useState } from "react";
 import { lt } from "date-fns/locale";
-import { useSearchParams } from "next/navigation";
 
 export default function CategoryDashboard() {
   const supabase = createClientComponentClient();
@@ -43,12 +42,10 @@ export default function CategoryDashboard() {
     }
     console.log(categories);
   };
-  const getData = async (ctfilter: any) => {
+  const getData = async () => {
     try {
       const res = await fetch(
-        `http://localhost:3000/Backend/api/Device?name=${name}&priceeq=${eqPrice}&pricelt=${ltPrice}&pricegt=${gtPrice}&onsale=${onSale}&ctname=${
-          ctfilter == "" ? categoryName : ctfilter
-        }`,
+        `http://localhost:3000/Backend/api/Device?name=${name}&priceeq=${eqPrice}&pricelt=${ltPrice}&pricegt=${gtPrice}&onsale=${onSale}&ctname=${categoryName}`,
         {
           method: "GET",
         }
@@ -66,13 +63,8 @@ export default function CategoryDashboard() {
       console.log(error);
     }
   };
-  const searchParams = useSearchParams();
-
   useEffect(() => {
-    const ctfilter = searchParams.get("ctfilter");
-
-    if (ctfilter) setCategoryName(ctfilter);
-    getData(ctfilter);
+    getData();
     getCategories();
   }, []);
   const [eqPrice, setEqPrice] = useState("");
@@ -179,7 +171,7 @@ export default function CategoryDashboard() {
         <br /> <br /> <br />
         <button
           onClick={() => {
-            getData("");
+            getData();
           }}
           id="filterButton"
           className="buttonField"

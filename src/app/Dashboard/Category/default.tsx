@@ -10,6 +10,7 @@ export default function CategoryDashboard() {
   const [name, setName] = useState("");
   const [valid, setValid] = useState("");
   const [error, setError] = useState("");
+
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     const submitData = { name };

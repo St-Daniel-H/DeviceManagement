@@ -18,7 +18,6 @@ export default class CategoryReposiroty{
        } 
     }
     public async CreateCategory(name: string){
-       console.log(name);
       let { data: Category, error } = await this.supabase
       .from('Category') 
        .insert({name: name})

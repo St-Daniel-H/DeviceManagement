@@ -1,15 +1,13 @@
 "use client";
-import "../../../scss/Dashboards.scss";
-import { useEffect, useState } from "react";
-import { useSearchParams } from "next/navigation";
 import Link from "next/link";
+import "../../../scss/Dashboards.scss";
+
+import { useEffect, useState } from "react";
 
 export default function CategoriesTable() {
   const [categories, setCategories] = useState<
     { id: number; name: string; createdAt: Date }[]
   >([]);
-  const searchParams = useSearchParams();
-  const ctfilter = searchParams.get("ctfilter");
   useEffect(() => {
     const getCategories = async () => {
       try {
@@ -18,12 +16,7 @@ export default function CategoriesTable() {
         });
         if (res.ok) {
           res.json().then((result) => {
-            if (ctfilter) {
-              const filteredCategories = result.categories.filter(
-                (x: any) => x.name === ctfilter
-              );
-              setCategories(filteredCategories);
-            } else setCategories(result.categories);
+            setCategories(result.categories);
           });
         } else {
           throw new Error("Something went wrong getting categories");
@@ -31,7 +24,6 @@ export default function CategoriesTable() {
       } catch (error) {
         console.log(error);
       }
-      console.log(categories);
     };
 
     getCategories();
@@ -52,12 +44,10 @@ export default function CategoriesTable() {
               <td>{item.id}</td>
               <td>
                 <Link
-                  style={{
-                    textDecoration: "none",
-                    color: "inherit",
-                    cursor: "pointer",
-                  }}
-                  href={`./ViewItems?ctfilter=${encodeURIComponent(item.name)}`}
+                  style={{ cursor: "pointer" }}
+                  href={`./Dashboard/ViewItems?ctfilter=${encodeURIComponent(
+                    item.name
+                  )}`}
                 >
                   {item.name}
                 </Link>

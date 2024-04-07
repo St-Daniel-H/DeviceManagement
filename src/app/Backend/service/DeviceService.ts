@@ -60,4 +60,28 @@ export default class DeviceCategory{
                 console.log(error);
               }
         }
+        public async CreateDevice(name:string,price:number,sale_deduct:number|null,sale_start:Date|null,sale_end:Date|null,category_id:number){
+            let { data: Device, error } = await this.supabase
+            .from('Device') 
+             .insert({name: name,price:price,sale_deduct:sale_deduct,sale_start:sale_start,sale_end:sale_end,category_id:category_id})
+             if(error){
+                console.log(error);
+                return NextResponse.json({error: "Error occured"});
+             }
+           return NextResponse.json(Device);
+        }
+        public async GetDeviceDetails(id:number){
+            try{
+                let {data: Device, error} = await this.supabase.from('Device')  
+                .select("*")
+                .eq('id', id)
+                if(Device){
+                    return NextResponse.json(Device);
+                }else{
+                    return NextResponse.json("No Data was found")
+                }
+            }catch(error){
+                return NextResponse.json({error: error})
+            }
+        }
 }

@@ -9,6 +9,7 @@
     position: fixed;
     display: flex;
     align-items: center;
+    z-index: 11;
 
     @media screen and (min-width: 830px) {
         #TopBar #BurgerIcon {

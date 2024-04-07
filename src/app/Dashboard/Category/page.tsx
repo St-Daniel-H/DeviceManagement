@@ -21,13 +21,10 @@ export default function CategoryDashboard() {
           "content-type": "application/json",
         },
       });
-      console.log(res);
       if (res.ok) {
-        console.log("Yeai!");
         setError("");
         setValid("Category was added");
       } else {
-        console.log("Oops! Something is wrong.");
         setValid("");
         setError("Something went wrong");
       }
@@ -45,6 +42,7 @@ export default function CategoryDashboard() {
           <label htmlFor="name">Name</label>
           <br />
           <input
+            className="inputField"
             id="name"
             value={name}
             onChange={(e) => setName(e.target.value)}
